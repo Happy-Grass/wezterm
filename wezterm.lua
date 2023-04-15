@@ -8,13 +8,14 @@ local set_environment_variables = {}
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	table.insert(launch_menu, {
 		label = "ArchLinux",
-		args = { "C:/WINDOWS/system32/wsl.exe -d arch"},
-        cwd = '~'
+		args = { "C:/WINDOWS/system32/wsl.exe", "--cd", "/home/xfw" },
+		cwd = "~",
 	})
 	table.insert(launch_menu, {
 		label = "PowerShell",
 		args = { "powershell.exe", "-NoLogo" },
 	})
+	-- default_prog = { "ArchLinux" }
 	default_prog = { "C:/WINDOWS/system32/wsl.exe", "--cd", "/home/xfw" }
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
 	table.insert(launch_menu, {
@@ -32,19 +33,29 @@ end
 
 local config = {
 	-- Basic
-    initial_rows = 36,
-    initial_cols = 120,
-    window_close_confirmation = "NeverPrompt",
+	initial_rows = 35,
+	initial_cols = 120,
+	window_close_confirmation = "NeverPrompt",
 	check_for_updates = false,
 	switch_to_last_active_tab_when_closing_tab = false,
 	enable_scroll_bar = false,
 	--Background
 	-- window_background_image = "C:/Users/xfwah/OneDrive/Pictures/Saved Pictures/windows.jpg",
 	-- Window
-	window_decorations = "RESIZE", --RESIZE
+	window_decorations = "TITLE|RESIZE", --RESIZE
 	window_frame = {
-		border_left_width = "0.00cell",
-		border_right_width = "0.00cell",
+		inactive_titlebar_bg = "#003535",
+		active_titlebar_bg = "#2b4042",
+		inactive_titlebar_fg = "#cccccc",
+		active_titlebar_fg = "#019347",
+		inactive_titlebar_border_bottom = "#002042",
+		active_titlebar_border_bottom = "#009347",
+		button_fg = "#cccccc",
+		button_bg = "#2b2042",
+		button_hover_fg = "#2b2042",
+		button_hover_bg = "#3b3052",
+		border_left_width = "0.0cell",
+		border_right_width = "0.0cell",
 		border_bottom_height = "0.00cell",
 		border_top_height = "0.00cell",
 		border_left_color = "#66ccff",
@@ -54,7 +65,7 @@ local config = {
 	},
 	native_macos_fullscreen_mode = true,
 	adjust_window_size_when_changing_font_size = true,
-	window_background_opacity = 0.70,
+	window_background_opacity = 0.95,
 	text_background_opacity = 0.95,
 	window_padding = {
 		left = 0,
@@ -74,9 +85,9 @@ local config = {
 			weight = "Regular",
 			harfbuzz_features = { "zero", "ss01", "cv05" },
 		},
-		"FiraCode NF",
+		"KaiTi",
 	}),
-	font_size = 11,
+	font_size = 12,
 	normalize_to_nfc = true,
 	-- Tab bar
 	enable_tab_bar = false,
@@ -113,7 +124,7 @@ local config = {
 			action = wezterm.action.StartWindowDrag,
 		},
 	},
-	color_scheme = "tokyonight-storm",
+	color_scheme = "Catppuccin Mocha",
 	inactive_pane_hsb = {
 		hue = 1.0,
 		saturation = 1.0,
